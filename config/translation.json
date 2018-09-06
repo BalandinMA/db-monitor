@@ -1,0 +1,11 @@
+{
+  "INBOUND.INBD_STATUS": {
+    "1": "WAITING",
+    "2": "PROCESSING",
+    "3": "PROCESSING",
+    "4": "PROCESSING",
+    "5": "FILE_ERROR",
+    "6": "SYSTEM_ERROR",
+    "7": "ACCEPTED"
+  }
+}
