@@ -1,0 +1,16 @@
+[
+  {
+    "name":"e2e",
+    "data":"classpath:init.sql, classpath:init_data.sql",
+    "url":"jdbc:h2:mem:testdb;DB_CLOSE_DELAY=- 1",
+    "username":"admin",
+    "password":"1"
+  },
+  {
+    "name":"INT",
+    "data":"classpath:init.sql, classpath:init_data.sql",
+    "url":"jdbc:h2:mem:testdb;DB_CLOSE_DELAY=- 1",
+    "username":"admin",
+    "password":"1"
+  }
+]

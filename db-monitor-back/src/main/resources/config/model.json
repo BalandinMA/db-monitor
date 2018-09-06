@@ -1,0 +1,89 @@
+[
+  {
+    "name": "Full way",
+    "input": "Inbound ID",
+    "tables": [
+      {
+        "name": "INBOUND",
+        "columns": [
+          "INBD_ID",
+          "INBD_CHANNEL_ID",
+          "INBD_TIME",
+          "INBD_STATUS"
+        ],
+        "where": "INBD_ID"
+      },
+      {
+        "name": "PREPROCESSING",
+        "columns": [
+          "PREPROC_ID",
+          "PREPROC_FILE_TYPE",
+          "PREPROC_FILE_SZE"
+        ],
+        "where": "PREPROC_INBD_ID",
+        "by": {
+          "table": "INBOUND",
+          "column": "INBD_ID"
+        }
+      },
+      {
+        "name": "PROCESSING",
+        "columns": [
+          "PROC_ID",
+          "PROC_CUSTOMER_ID",
+          "PROC_COUNTERPARTY_ID",
+          "PROC_TYPE",
+          "PROC_BUSINESS_TYPE",
+          "PROC_STATUS"
+        ],
+        "where": "PROC_PREPROC_ID",
+        "by": {
+          "table": "PREPROCESSING",
+          "column": "PREPROC_ID"
+        }
+      },
+      {
+        "name": "POSTPROCESSING",
+        "columns": [
+          "POSTPROC_ID",
+          "POSTPROC_TYPE",
+          "POSTPROC_FORMAT"
+        ],
+        "where": "POSTPROC_PROC_ID",
+        "by": {
+          "table": "PROCESSING",
+          "column": "PROC_ID"
+        }
+      },
+      {
+        "name": "OUTBOUND",
+        "columns": [
+          "OUTBOUND_ID",
+          "OUTBOUND_CHANNEL_ID",
+          "OUTBOUND_STATUS"
+        ],
+        "where": "OUTBOUND_POSTPROC_ID",
+        "by": {
+          "table": "POSTPROCESSING",
+          "column": "POSTPROC_ID"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Input only",
+    "input": "Inbound ID",
+    "tables": [
+      {
+        "name": "INBOUND",
+        "columns": [
+          "INBD_ID",
+          "INBD_CHANNEL_ID",
+          "INBD_TIME",
+          "INBD_STATUS"
+        ],
+        "where": "INBD_ID"
+      }
+    ]
+  }
+]

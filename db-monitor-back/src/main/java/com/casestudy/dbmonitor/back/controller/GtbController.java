@@ -17,13 +17,14 @@ public class GtbController {
     final TransactionService transactionService;
 
     @GetMapping("/test")
-    public String hello3(@RequestParam String id) {
-        return "Hello " + id;
+    public Object test(@RequestParam String id) {
+        Map<String, List<Map<String, String>>> result = transactionService.getTransactionInfo("e2e", "Full way", id);
+        return result;
     }
 
     @GetMapping("/getTransactionInfo")
-    public Object getTransactionInfo(@RequestParam String id) {
-        Map<String, List<Map<String, String>>> result = transactionService.getTransactionInfo(id);
+    public Object getTransactionInfo(@RequestParam String envName, @RequestParam String schemaName, @RequestParam String id) {
+        Map<String, List<Map<String, String>>> result = transactionService.getTransactionInfo(envName, schemaName, id);
         return result;
     }
 }

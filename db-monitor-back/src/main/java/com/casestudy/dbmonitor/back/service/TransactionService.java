@@ -12,8 +12,8 @@ import java.util.Map;
 public class TransactionService {
     final ModelDao modelDao;
 
-    public Map<String, List<Map<String, String>>> getTransactionInfo(String id) {
-        Map<String, List<Map<String, String>>> resultTables = modelDao.getTransaction("Full way", id);
+    public Map<String, List<Map<String, String>>> getTransactionInfo(String envName, String schemaName, String id) {
+        Map<String, List<Map<String, String>>> resultTables = modelDao.getTransaction(envName,schemaName, id);
         return resultTables;
     }
 }
