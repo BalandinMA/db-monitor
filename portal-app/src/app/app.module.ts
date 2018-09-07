@@ -8,12 +8,17 @@ import { AppRoutingModule } from './app.routing.module';
 import {UserService} from './user/user.service';
 import {HttpClientModule} from "@angular/common/http";
 import {AddUserComponent} from './user/add-user.component';
+import {TransactionInfoComponent} from "./transaction-info/transaction-info.component";
+import {MapToIterable} from "./map-to-iterable.pipe";
+import {TransactionInfoService} from "./transaction-info/transaction-info.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    AddUserComponent
+    AddUserComponent,
+    TransactionInfoComponent,
+    MapToIterable
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,7 @@ import {AddUserComponent} from './user/add-user.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, TransactionInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

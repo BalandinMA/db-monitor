@@ -1,0 +1,53 @@
+<div class="container">
+  <form>
+    <div class="form-group col-xs-2">
+      <label for="environmentId">Environment</label>
+      <select class="form-control" id="environmentId"
+              [(ngModel)]="requestModel.env" name="environmentId">
+        <option *ngFor="let environmentName of initInfo.environmentNames" [value]="environmentName">{{environmentName}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group col-xs-2">
+      <label for="flow">Flow</label>
+      <select class="form-control" id="flow"
+              [(ngModel)]="requestModel.flow" name="flow">
+        <option *ngFor="let modelName of initInfo.modelNames" [value]="modelName">{{modelName}}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-xs-2">
+      <label for="transactionId">Transaction Id</label>
+      <input class="form-control" id="transactionId" [(ngModel)]="requestModel.id" name="transactionId">
+    </div>
+
+    <div class="col-md-5">
+      <button class="btn btn-success" (click)="getTransactionInfo()">Find</button>
+    </div>
+  </form>
+</div>
+
+
+<div *ngIf="data" class="container">
+  <div *ngFor="let table of data | mapToIterable">
+    {{table.key}}
+    <table class="table table-compact table-striped">
+      <thead>
+      <tr>
+        <th *ngFor="let column of table.val[0]| mapToIterable">
+          {{column.key}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of table.val" >
+        <td  [ngStyle]="{'background': getColor(table.key, row)}" *ngFor="let cell of row | mapToIterable">
+          {{cell.val}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

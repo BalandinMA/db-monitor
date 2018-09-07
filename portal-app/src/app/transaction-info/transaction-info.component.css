@@ -1,0 +1,10 @@
+.red {
+  background: rgba(255, 0, 0, 0.04);
+}
+
+.yellow {
+  background: rgba(255, 255, 0, 0.06);
+}
+.green{
+  background: rgba(29, 255, 1, 0.06);
+}

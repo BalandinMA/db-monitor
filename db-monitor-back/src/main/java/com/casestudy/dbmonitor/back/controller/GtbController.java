@@ -1,11 +1,9 @@
 package com.casestudy.dbmonitor.back.controller;
 
+import com.casestudy.dbmonitor.back.entitiy.BodyParamsHandler;
 import com.casestudy.dbmonitor.back.service.TransactionService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -23,8 +21,16 @@ public class GtbController {
     }
 
     @GetMapping("/getTransactionInfo")
-    public Object getTransactionInfo(@RequestParam String envName, @RequestParam String schemaName, @RequestParam String id) {
-        Map<String, List<Map<String, String>>> result = transactionService.getTransactionInfo(envName, schemaName, id);
+    public Object getTransactionInfo(@RequestParam String env, @RequestParam String flow, @RequestParam String id) {
+        Map<String, List<Map<String, String>>> result = transactionService.getTransactionInfo(env, flow, id);
         return result;
     }
+
+    @PostMapping("/getTransactionInfo")
+    public Object getTransactionInfoPost(@RequestBody BodyParamsHandler requestBody) {
+        Map<String, List<Map<String, String>>> result = transactionService.getTransactionInfo(requestBody.getEnv(), requestBody.getFlow(), requestBody.getId());
+        return result;
+    }
+
+
 }

@@ -14,9 +14,6 @@ import java.util.*;
 @AllArgsConstructor
 @Log4j2
 public class ModelDao {
-//    @PersistenceContext
-//    private EntityManager entityManager;
-
     private final ModelHandler schemaMap;
 
     private final JdbcTemplateHolder jdbcTemplateHolder;
@@ -25,6 +22,9 @@ public class ModelDao {
         List<Table> tables = schemaMap.getByName(schemaName);
         JdbcTemplate jdbcTemplate = jdbcTemplateHolder.getByName(envName);
         Map<String, List<Map<String, String>>> resultTablesNormal = new LinkedHashMap<>(16, 0.75f, true);
+        if (tables == null || jdbcTemplate == null){
+            return  resultTablesNormal;
+        }
         tables.forEach(table -> {
             String query = makeQuery(id, table, resultTablesNormal);
             if (query != null) {
