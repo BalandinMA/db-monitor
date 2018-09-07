@@ -4,6 +4,8 @@ import com.casestudy.dbmonitor.back.entitiy.BodyParamsHandler;
 import com.casestudy.dbmonitor.back.entitiy.InitInfo;
 import com.casestudy.dbmonitor.back.service.TransactionService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +13,8 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Log4j2
 public class GtbController {
     final TransactionService transactionService;
 
@@ -30,6 +33,7 @@ public class GtbController {
     @PostMapping("/transactionInfo")
     public Object getTransactionInfoPost(@RequestBody BodyParamsHandler requestBody) {
         Map<String, List<Map<String, String>>> result = transactionService.getTransactionInfo(requestBody.getEnv(), requestBody.getFlow(), requestBody.getId());
+log.info(result);
         return result;
     }
 

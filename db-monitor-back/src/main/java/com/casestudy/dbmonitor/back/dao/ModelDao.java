@@ -22,7 +22,7 @@ public class ModelDao {
     public Map<String, List<Map<String, String>>> getTransaction(String envName, String schemaName, String id) {
         List<Table> tables = schemaMap.getByName(schemaName);
         JdbcTemplate jdbcTemplate = jdbcTemplateHolder.getByName(envName);
-        Map<String, List<Map<String, String>>> resultTablesNormal = new LinkedHashMap<>(16, 0.75f, true);
+        Map<String, List<Map<String, String>>> resultTablesNormal = new LinkedHashMap<>(16, 0.75f, false);
         if (tables == null || jdbcTemplate == null){
             return  resultTablesNormal;
         }
@@ -30,8 +30,11 @@ public class ModelDao {
             String query = makeQuery(id, table, resultTablesNormal);
             if (query != null) {
                 jdbcTemplate.queryForList(query).forEach(row -> {
+//                    if (resultTablesNormal.get(table.getName())==null){
+//                        resultTablesNormal.put(table.getName(),new ArrayList<>());
+//                    }
                     resultTablesNormal.computeIfAbsent(table.getName(), k -> new ArrayList<>());
-                    Map<String, String> rowData = new LinkedHashMap<>(16, 0.75f, true);
+                    Map<String, String> rowData = new LinkedHashMap<>(16, 0.75f, false);
                     for (String columnName : table.getColumns()) {
                         rowData.put(columnName, String.valueOf(row.get(columnName)));
                     }

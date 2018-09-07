@@ -43,29 +43,16 @@
         }
       },
       {
-        "name": "POSTPROCESSING",
-        "columns": [
-          "POSTPROC_ID",
-          "POSTPROC_TYPE",
-          "POSTPROC_FORMAT"
-        ],
-        "where": "POSTPROC_PROC_ID",
-        "by": {
-          "table": "PROCESSING",
-          "column": "PROC_ID"
-        }
-      },
-      {
         "name": "OUTBOUND",
         "columns": [
           "OUTBOUND_ID",
           "OUTBOUND_CHANNEL_ID",
           "OUTBOUND_STATUS"
         ],
-        "where": "OUTBOUND_POSTPROC_ID",
+        "where": "OUTBOUND_PROC_ID",
         "by": {
-          "table": "POSTPROCESSING",
-          "column": "POSTPROC_ID"
+          "table": "PROCESSING",
+          "column": "PROC_ID"
         }
       }
     ]

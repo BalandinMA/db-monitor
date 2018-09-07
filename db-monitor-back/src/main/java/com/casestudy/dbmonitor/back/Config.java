@@ -57,10 +57,6 @@ public class Config {
         Map colorConfig = objectMapper.readValue(inputStream, Map.class);
         InitInfo initInfo = new InitInfo();
         initInfo.setColors(colorConfig);
-//        for (Map.Entry<String, String> color : colorConfig.getColor().entrySet()) {
-//            initInfo.
-//        }
-
         InputStream inputStreamEnvironment = classLoader.getResourceAsStream("config/environment.json");
         Environment[] environmentsData = objectMapper.readValue(inputStreamEnvironment, Environment[].class);
         List<String> environments = new ArrayList<>();
