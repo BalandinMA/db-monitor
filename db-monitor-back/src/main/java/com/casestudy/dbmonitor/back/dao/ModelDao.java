@@ -3,6 +3,7 @@ package com.casestudy.dbmonitor.back.dao;
 
 import com.casestudy.dbmonitor.back.entitiy.Table;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,7 @@ import java.util.*;
 
 
 @Repository
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Log4j2
 public class ModelDao {
     private final ModelHandler schemaMap;

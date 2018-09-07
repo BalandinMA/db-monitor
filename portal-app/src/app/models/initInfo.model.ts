@@ -1,5 +1,5 @@
 export class InitInfo {
-  modelNames: string[];
-  environmentNames: string[];
+  flows: string[];
+  environments: string[];
   colors: {}
 }
