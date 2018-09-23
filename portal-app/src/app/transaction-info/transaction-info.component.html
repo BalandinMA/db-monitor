@@ -4,7 +4,8 @@
       <label for="environmentId">Environment</label>
       <select class="form-control" id="environmentId"
               [(ngModel)]="requestModel.env" name="environmentId">
-        <option *ngFor="let environmentName of initInfo.environments" [value]="environmentName" [selected]="initInfo.environments[0]">{{environmentName}}
+        <option *ngFor="let environmentName of initInfo.environments" [value]="environmentName"
+                [selected]="initInfo.environments[0]">{{environmentName}}
         </option>
       </select>
     </div>
@@ -23,14 +24,14 @@
     </div>
 
     <div class="button-fix">
-      <button class="btn btn-success button-fix" (click)="getTransactionInfo()" >Find</button>
+      <button class="btn btn-success button-fix" (click)="getTransactionInfo()">Find</button>
     </div>
   </form>
 </div>
 
 
-<div *ngIf="data" class="container">
-  <div *ngFor="let table of data | mapToIterable">
+<div *ngIf="translationDetails" class="container">
+  <div *ngFor="let table of translationDetails | mapToIterable">
     {{table.key}}
     <table class="table table-compact table-striped">
       <thead>
@@ -41,9 +42,9 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let row of table.val" >
-        <td  [ngStyle]="{'background': getColor(table.key, row)}" *ngFor="let cell of row | mapToIterable">
-          {{cell.val}}
+      <tr *ngFor="let row of table.val">
+        <td [ngStyle]="{'background': getColor(table.key, row)}" *ngFor="let cell of row | mapToIterable">
+          {{getValue(table.key, cell.key, cell.val)}}
         </td>
       </tr>
       </tbody>

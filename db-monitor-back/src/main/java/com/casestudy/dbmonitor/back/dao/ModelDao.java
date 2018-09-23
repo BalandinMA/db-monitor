@@ -19,7 +19,7 @@ public class ModelDao {
 
     private final JdbcTemplateHolder jdbcTemplateHolder;
 
-    public Map<String, List<Map<String, String>>> getTransaction(String envName, String schemaName, String id) {
+    public Map<String, List<Map<String, String>>> getTransactionDetails(String envName, String schemaName, String id) {
         List<Table> tables = schemaMap.getByName(schemaName);
         JdbcTemplate jdbcTemplate = jdbcTemplateHolder.getByName(envName);
         Map<String, List<Map<String, String>>> resultTablesNormal = new LinkedHashMap<>(16, 0.75f, false);
